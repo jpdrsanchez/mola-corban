@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Container,
   Grid,
   GridItem,
@@ -47,18 +48,20 @@ const Pokemon = () => {
   if (data)
     return (
       <Container w="100%" maxW="container.lg">
-        <Grid templateColumns="1fr 2fr" gap={6} alignItems="center">
+        <Grid templateColumns={{ lg: '1fr 2fr' }} gap={6} alignItems="center">
           <GridItem>
             <Skeleton isLoaded={!loading}>
               <Box w="100%" p={6} bg="white" boxShadow="xs" borderRadius={6}>
-                <Image
-                  src={`${process.env.REACT_APP_SPRITE_URL}/${data?.id}.png`}
-                  alt="Pokémon"
-                  transition="all 1s"
-                  _hover={{
-                    transform: 'scale(1.1)'
-                  }}
-                />
+                <Center w="100%" h="100%">
+                  <Image
+                    src={`${process.env.REACT_APP_SPRITE_URL}/${data?.id}.png`}
+                    alt="Pokémon"
+                    transition="all 1s"
+                    _hover={{
+                      transform: 'scale(1.1)'
+                    }}
+                  />
+                </Center>
               </Box>
             </Skeleton>
           </GridItem>
@@ -71,10 +74,11 @@ const Pokemon = () => {
                 px={6}
                 py={8}
                 borderRadius={6}
-                templateColumns="repeat(3, 1fr)"
+                templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
                 column={4}
                 rowGap={8}
                 color="white"
+                textAlign={{ base: 'center', sm: 'left' }}
               >
                 <GridItem>
                   <Heading as="h3" mb={2}>

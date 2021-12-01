@@ -1,4 +1,4 @@
-import { Button, HStack, Icon, IconButton } from '@chakra-ui/react'
+import { Button, Icon, IconButton, Wrap } from '@chakra-ui/react'
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi'
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
@@ -12,7 +12,7 @@ const Pagination = () => {
   return (
     <>
       {!!count && !!total_pages && (
-        <HStack as="nav" mt={8} justify="center" spacing={2}>
+        <Wrap as="nav" mt={8} justify="center" spacing={2}>
           <IconButton
             aria-label="Primeira Página"
             colorScheme="teal"
@@ -77,7 +77,7 @@ const Pagination = () => {
             to={`/${total_pages}`}
             isDisabled={!next}
           />
-        </HStack>
+        </Wrap>
       )}
     </>
   )

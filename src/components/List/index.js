@@ -8,7 +8,15 @@ const List = () => {
   } = useSelector(state => state)
 
   return (
-    <Grid gap={4} gridTemplateColumns="repeat(4, 1fr)">
+    <Grid
+      gap={4}
+      gridTemplateColumns={[
+        '1fr',
+        'repeat(2, 1fr)',
+        'repeat(3, 1fr)',
+        'repeat(4, 1fr)'
+      ]}
+    >
       {loading &&
         Array(per_page)
           .fill(0)
