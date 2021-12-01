@@ -7,7 +7,7 @@ const client = axios.create({
   }
 })
 
-export const listUsers = async (since = 0, per_page = 30) =>
+export const listUsers = async (per_page = 10, since = 0) =>
   client.get('users', {
     params: {
       per_page,

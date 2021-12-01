@@ -14,10 +14,15 @@ const UserItem = () => {
       bg="white"
       p={4}
       w="100%"
-      boxShadow="xs"
+      border="1px"
+      borderColor="gray.200"
       borderRadius={2}
       templateColumns="1fr 3fr 1fr"
       alignItems="center"
+      _hover={{
+        boxShadow: 'lg'
+      }}
+      transition="all .3s"
     >
       <Box w="100%">
         <Avatar name="João Pedro Sanchez" />
