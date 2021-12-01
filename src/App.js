@@ -1,11 +1,22 @@
+import { Box, Flex } from '@chakra-ui/react'
+import Home from 'pages/Home'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<p>Home</p>} />
-      <Route path="/:id" element={<p>ID</p>} />
-    </Routes>
+    <Box bg="gray.50" py={4} px={8}>
+      <Flex
+        minH="calc(100vh - 32px)"
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:id" element={<p>ID</p>} />
+        </Routes>
+      </Flex>
+    </Box>
   )
 }
 
