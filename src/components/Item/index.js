@@ -1,6 +1,7 @@
 import { Box, Button, Center, Heading, Icon, Image } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { FiMoreVertical } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 const Item = ({ name = '', id = '' }) => {
   const idValue = useMemo(() => {
@@ -48,11 +49,12 @@ const Item = ({ name = '', id = '' }) => {
 
         <Center>
           <Button
-            as="a"
+            as={Link}
             colorScheme="teal"
             size="md"
             cursor="pointer"
             leftIcon={<Icon as={FiMoreVertical} />}
+            to={`/pokemon/${name}`}
           >
             Detalhes
           </Button>

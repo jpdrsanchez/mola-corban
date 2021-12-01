@@ -1,5 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
+import Custom404 from 'pages/404'
 import Home from 'pages/Home'
+import Pokemon from 'pages/Pokemon'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<Home />} />
-          <Route path="/pokemon/:name" element={<p>ID</p>} />
+          <Route path="/pokemon/:name" element={<Pokemon />} />
+          <Route path="/404" element={<Custom404 />} />
+          <Route path="*" element={<Custom404 />} />
         </Routes>
       </Flex>
     </Box>

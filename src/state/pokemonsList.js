@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { list } from 'lib/api'
 
 export const getList = createAsyncThunk(
-  'users/fetchUsersList',
+  'users/pokemonList',
   async (offset = 0, { rejectWithValue, getState }) => {
     const {
       pokemon: { per_page }
@@ -11,6 +11,7 @@ export const getList = createAsyncThunk(
       const {
         data: { count, next, previous, results }
       } = await list(offset, per_page)
+      if (!results.length) throw new Error('Nenhum resultado encontrado')
       return {
         count,
         next,
@@ -38,7 +39,7 @@ const pokemonsSlice = createSlice({
   extraReducers: {
     [getList.pending]: state => {
       state.loading = true
-      state.error = false
+      state.error = null
     },
     [getList.fulfilled]: (state, { payload }) => {
       state.loading = false
