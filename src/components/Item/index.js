@@ -1,7 +1,13 @@
 import { Box, Button, Center, Heading, Icon, Image } from '@chakra-ui/react'
+import { useMemo } from 'react'
 import { FiMoreVertical } from 'react-icons/fi'
 
-const Item = () => {
+const Item = ({ name = '', id = '' }) => {
+  const idValue = useMemo(() => {
+    const urlArray = id.split('/')
+    return urlArray[urlArray.length - 2]
+  }, [id])
+
   return (
     <Box
       bg="white"
@@ -20,11 +26,11 @@ const Item = () => {
     >
       <Center w="100%" h="200px">
         <Image
-          src={`${process.env.REACT_APP_SPRITE_URL}/1.png`}
-          alt="Pokémon"
+          src={`${process.env.REACT_APP_SPRITE_URL}/${idValue}.png`}
+          alt={name}
           objectFit="contain"
           objectPosition="center"
-          boxSize="200px"
+          maxH="180px"
           sx={{
             filter: 'grayscale(100%)'
           }}
@@ -37,7 +43,7 @@ const Item = () => {
       </Center>
       <Box w="100%" py={5} px={4}>
         <Heading as="h3" size="md" textAlign="center" mb={4}>
-          Bulbasaur
+          {name}
         </Heading>
 
         <Center>

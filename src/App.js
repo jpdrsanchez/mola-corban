@@ -13,7 +13,8 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<p>ID</p>} />
+          <Route path="/:id" element={<Home />} />
+          <Route path="/pokemon/:name" element={<p>ID</p>} />
         </Routes>
       </Flex>
     </Box>

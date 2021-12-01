@@ -1,19 +1,30 @@
-import { Container } from '@chakra-ui/react'
+import { Container, Heading } from '@chakra-ui/react'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getList } from 'state/pokemonsList'
 import PokemonList from 'components/List'
+import Pagination from 'components/Pagination'
+import { useParams } from 'react-router-dom'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const {
+    pokemon: { per_page }
+  } = useSelector(state => state)
+  const params = useParams()
 
   useEffect(() => {
-    dispatch(getList())
-  }, [dispatch])
+    if (!params.id) dispatch(getList())
+    if (params.id) dispatch(getList(per_page * (params.id - 1)))
+  }, [params, per_page, dispatch])
 
   return (
     <Container maxW="container.xl" w="100%">
+      <Heading textAlign="center" mt={5} mb={12}>
+        Pokédex {!!params.id && `- Página ${params.id}`}
+      </Heading>
       <PokemonList />
+      <Pagination />
     </Container>
   )
 }

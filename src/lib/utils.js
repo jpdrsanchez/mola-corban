@@ -1,7 +1,7 @@
-export const getNextPage = (paginationHeader = '') => {
-  const hasNextPageParam = paginationHeader.includes('since=')
-  if (hasNextPageParam) {
-    let getNextPageParamIndex = paginationHeader.indexOf('since=')
-    console.log(getNextPageParamIndex)
+export const getCurrentOffset = (url = null) => {
+  if (!!url) {
+    console.log(url.split('=').split(/[?&]offset=|[?&]limit=/))
   }
+
+  return null
 }

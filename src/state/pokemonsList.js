@@ -3,11 +3,14 @@ import { list } from 'lib/api'
 
 export const getList = createAsyncThunk(
   'users/fetchUsersList',
-  async (page, { rejectWithValue }) => {
+  async (offset = 0, { rejectWithValue, getState }) => {
+    const {
+      pokemon: { per_page }
+    } = getState()
     try {
       const {
         data: { count, next, previous, results }
-      } = await list()
+      } = await list(offset, per_page)
       return {
         count,
         next,
@@ -28,7 +31,9 @@ const pokemonsSlice = createSlice({
     next: null,
     previous: null,
     loading: false,
-    error: null
+    error: null,
+    per_page: 12,
+    total_pages: null
   },
   extraReducers: {
     [getList.pending]: state => {
@@ -41,6 +46,7 @@ const pokemonsSlice = createSlice({
       state.next = !!payload.next
       state.previous = !!payload.previous
       state.count = payload.count
+      state.total_pages = Math.ceil(state.count / state.per_page)
     },
     [getList.rejected]: (state, action) => {
       state.next = null
@@ -48,6 +54,7 @@ const pokemonsSlice = createSlice({
       state.loading = false
       state.error = true
       state.data = action.payload
+      state.total_pages = null
     }
   }
 })
