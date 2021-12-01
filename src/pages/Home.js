@@ -1,20 +1,20 @@
-import { Box } from '@chakra-ui/react'
-import UserList from 'components/UserList'
+import { Container } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getUsersList } from 'state/userList'
+import { getList } from 'state/pokemonsList'
+import PokemonList from 'components/List'
 
 const Home = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUsersList())
+    dispatch(getList())
   }, [dispatch])
 
   return (
-    <Box maxW="600px" w="100%">
-      <UserList />
-    </Box>
+    <Container maxW="container.xl" w="100%">
+      <PokemonList />
+    </Container>
   )
 }
 

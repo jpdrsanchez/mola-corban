@@ -7,12 +7,12 @@ const client = axios.create({
   }
 })
 
-export const listUsers = async (per_page = 10, since = 0) =>
-  client.get('users', {
+export const list = async (offset = 0, limit = 12) =>
+  client.get('/', {
     params: {
-      per_page,
-      since
+      offset,
+      limit
     }
   })
 
-export const getUser = async (username = '') => client.get(`users/${username}`)
+export const getDetails = async (username = '') => client.get(`/${username}`)
